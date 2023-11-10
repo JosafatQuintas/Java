@@ -1,0 +1,89 @@
+/*
+Josafat Quintas
+ 	This program uses loops to continuously prompt the user to enter to enter the amount of rooms and number of rooms occupied on a floor as the program ascends to the total amount of floors.
+*/
+
+package p06;
+
+import java.text.DecimalFormat;
+import java.util.Scanner;
+
+public class P06220Quintas {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+			Scanner input = new Scanner(System.in);
+			
+			System.out.println("**************** HOTEL ROOM OCCUPANCY ****************************");
+			System.out.print("How many floors does the hotel have? ");
+			
+			//Floor
+			double floorTotal;
+			floorTotal = input.nextDouble();
+			int floor=1;
+			
+			// Rooms
+			int rooms = 0;
+			double totalRooms = 0;
+			
+			// occupied
+			int occupied = 0;
+			double occupiedTotal = 0;	
+			
+			while(floorTotal<1) {
+			System.out.print("Please enter 1 or more: ");
+				floorTotal = input.nextDouble();	
+			}
+			
+			System.out.print("\n");
+			do{
+				
+				
+				// Moves past 13
+				
+				if(floor == 13) {
+					floor++;
+				}
+				
+				
+				//Calculates Total rooms
+				
+				System.out.print("How many rooms are on floor " + floor + "? ");
+				rooms = input.nextInt();
+				while(rooms < 10) {
+					System.out.print("Please enter 10 or more: ");
+					rooms = input.nextInt();
+				}
+				totalRooms += rooms;
+				
+				//Calculates Total Occupancy
+				
+				System.out.print("how many rooms of these rooms are occupied? ");			
+				
+				occupied = input.nextInt();
+				while(occupied>rooms ||occupied<0){
+				System.out.print("The number should be in the range of 0 through " + rooms  + ": ");
+				occupied = input.nextInt();	
+				}
+				occupiedTotal += occupied;
+				
+				
+				floor = floor + 1;
+				System.out.print("\n");
+
+
+			}
+			while (floor < floorTotal + 1 && floorTotal > 0);
+
+
+			
+			System.out.println("The hotel has a total of " + new DecimalFormat("0").format(totalRooms) + " rooms.");
+			System.out.println(new DecimalFormat("0").format(occupiedTotal) + " are occupied.");
+			System.out.println(new DecimalFormat("0").format((totalRooms-occupiedTotal)) + " are empty.");
+			System.out.println("The occupancy rate is " + new DecimalFormat("0.0").format((occupiedTotal/totalRooms*100.0)) + "%");
+			
+			input.close();
+
+	}
+}
