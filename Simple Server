@@ -1,0 +1,25 @@
+package serverClient;
+import java.io.*;
+import java.net.*;
+
+public class server {
+	public static void main(String args[]) throws IOException 
+	{       
+		// Register service on port 9999
+		ServerSocket ss = new ServerSocket(9999);
+		Socket socket1=ss.accept(); // Wait and accept a connection
+		
+		// Get a communication stream associated with the socket
+		OutputStream s1out = socket1.getOutputStream();
+		DataOutputStream dos = new DataOutputStream(s1out);       
+      
+		// Send a string!
+		dos.writeUTF("You have connected to the server");       
+		dos.writeUTF("Server session Ending!");
+		// Close resources      
+		    
+		dos.close();
+		ss.close();
+		
+   }
+}
